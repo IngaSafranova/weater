@@ -60,11 +60,12 @@ enter.addEventListener('click',(event)=>{
    document.querySelector('.search').value ='';
 
 
-fetch ('/weather',{
+fetch ('https://weather-tq98.onrender.com/' || 'http:localhost:9000',{
     method: 'POST',
     headers:{
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*'
     },
     body: JSON.stringify({city})
 })
