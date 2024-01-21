@@ -1,5 +1,6 @@
 const enter = document.querySelector(".btn");
-//console.log(enter)
+const form = document.querySelector("#form");
+// console.log(form)
 const locationElement = document.querySelector(".location");
 //console.log(locationElement)
 const dateElement = document.querySelector(".date");
@@ -42,7 +43,9 @@ const dateBuilder = (d) => {
   return `${day} ${date} ${month} ${year}`;
 };
 
-enter.addEventListener("click", (event) => {
+form.addEventListener("submit", fetchWeather);
+
+function fetchWeather(event) {
   //prevents page reload when submitting a form
   event.preventDefault();
 
@@ -74,7 +77,7 @@ enter.addEventListener("click", (event) => {
       getWeather(city, data);
     })
     .catch((error) => console.log("Fetch error:", error));
-});
+}
 
 function getWeather(city, data) {
   const weather = data.current.weather[0].description;
@@ -92,6 +95,8 @@ function getWeather(city, data) {
 
   if (temperature >= 17) {
     document.body.style.backgroundColor = "#daa520";
-  } else document.body.style.backgroundColor = "#4682b4";
-  // document.body.style.backgroundImage = "url('/pexels-photomix-company-96627.jpg')"
+  } else {
+    document.body.style.backgroundColor = "#4682b4";
+    document.body.style.color = "#ffff";
+  }
 }
